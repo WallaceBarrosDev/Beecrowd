@@ -1,4 +1,4 @@
 make:
 	@clear
-	@gcc main.c -o programa -O3
+	@gcc -std=c99 -O2 -lm main.c -o programa	
 	@./programa
