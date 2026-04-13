@@ -1,15 +1,16 @@
+/* 1020 */
 #include <stdio.h>
 
 int main(void) {
-  int tempo, h, m, s;
-  scanf("%d", &tempo);
+  int idade_dias;
+  scanf("%d", &idade_dias);
 
-  h = tempo / 3600;
-  tempo %= 3600;
-  m = tempo / 60;
-  s = tempo % 60;
+  printf("%d ano(s)\n", idade_dias / 365);
+  idade_dias %= 365;
 
-  printf("%d:%d:%d\n", h, m, s);
-  
+  printf("%d mes(es)\n", idade_dias / 30);
+  idade_dias %= 30;
+
+  printf("%d dia(s)\n", idade_dias);
   return 0;
 }
