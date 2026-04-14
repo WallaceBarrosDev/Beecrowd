@@ -1,23 +1,18 @@
-/* 1037 */
+/* 1074 */
 #include <stdio.h>
 
 int main(void) {
-  double valor;
-  scanf("%lf", &valor);
+  int N, n;
 
-  if(valor < 0 || valor > 100) {
-    printf("Fora de intervalo\n");
-    return 0;
-  }
+  for(scanf("%d", &N); N > 0; N--) {
+    scanf("%d", &n);
 
-  if(valor <= 25) {
-    printf("Intervalo [0,25]\n");
-  } else if (valor <= 50) {
-    printf("Intervalo (25,50]\n");
-  } else if (valor <= 75) {
-    printf("Intervalo (50,75]\n");
-  } else {
-    printf("Intervalo (75,100]\n");
+    if(n == 0) {
+      printf("NULL\n");
+      continue;
+    }
+    
+    printf("%s %s\n", (n % 2 == 0) ? "EVEN" : "ODD", (n >= 0) ? "POSITIVE" : "NEGATIVE");
   }
 
   return 0;
