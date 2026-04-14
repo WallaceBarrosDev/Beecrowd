@@ -1,18 +1,13 @@
-/* 1074 */
+/* 1075 */
 #include <stdio.h>
 
 int main(void) {
-  int N, n;
+  int n;
+  scanf("%d", &n);
 
-  for(scanf("%d", &N); N > 0; N--) {
-    scanf("%d", &n);
-
-    if(n == 0) {
-      printf("NULL\n");
-      continue;
-    }
-    
-    printf("%s %s\n", (n % 2 == 0) ? "EVEN" : "ODD", (n >= 0) ? "POSITIVE" : "NEGATIVE");
+  for(int i = 0; i <= 10000; i++) {
+    if(i%n == 2)
+      printf("%d\n", i);
   }
 
   return 0;
