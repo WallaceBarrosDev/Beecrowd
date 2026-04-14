@@ -1,30 +1,24 @@
-/* 1036 */
+/* 1037 */
 #include <stdio.h>
-#include <math.h>
 
 int main(void) {
-  double a, b, c, delta, raiz, r1, r2;
-  scanf("%lf %lf %lf", &a, &b, &c);
+  double valor;
+  scanf("%lf", &valor);
 
-  delta = b*b - 4*a*c;
-  
-  if(delta < 0 || a == 0) {
-    printf("Impossivel calcular\n");
+  if(valor < 0 || valor > 100) {
+    printf("Fora de intervalo\n");
     return 0;
   }
-  
-  raiz = sqrt(delta);
 
-  if(raiz == 0) {
-    r1 = (-1*b)/(2*a);
-    r1 = r2;
+  if(valor <= 25) {
+    printf("Intervalo [0,25]\n");
+  } else if (valor <= 50) {
+    printf("Intervalo (25,50]\n");
+  } else if (valor <= 75) {
+    printf("Intervalo (50,75]\n");
   } else {
-    r1 = (-1*b+raiz)/(2*a);
-    r2 = (-1*b-raiz)/(2*a);
+    printf("Intervalo (75,100]\n");
   }
-  
-  printf("R1 = %.5f\n", r1);
-  printf("R2 = %.5f\n", r2);
 
   return 0;
 }
