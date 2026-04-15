@@ -1,26 +1,26 @@
-/* 1181*/
+/* 1182*/
 #include <stdio.h>
 
-double soma(int linha, double matriz[12][12]) {
-  double resultado = matriz[linha][0];
+double soma(int coluna, double matriz[12][12]) {
+  double resultado = matriz[0][coluna];
 
   for (int i = 1; i < 12; i++) {
-    resultado += matriz[linha][i];
+    resultado += matriz[i][coluna];
   }
 
   return resultado;
 }
 
-double media(int linha, double matriz[12][12]) {
-  return soma(linha, matriz)/12;
+double media(int coluna, double matriz[12][12]) {
+  return soma(coluna, matriz)/12;
 }
 
 int main(void) {
   char operacao;
-  int linha;
+  int coluna;
   double matriz[12][12];
 
-  scanf("%d %c", &linha, &operacao);
+  scanf("%d %c", &coluna, &operacao);
 
   for(int j = 0; j < 12; j++) {
     for(int i = 0; i < 12; i++) {
@@ -30,11 +30,11 @@ int main(void) {
 
   switch(operacao) {
     case 'S':
-      printf("%.1f\n", soma(linha, matriz));
+      printf("%.1f\n", soma(coluna, matriz));
     break;
     
     case 'M':
-      printf("%.1f\n", media(linha, matriz)); 
+      printf("%.1f\n", media(coluna, matriz)); 
     break;
     
     default: printf("Valor invalido\n");
