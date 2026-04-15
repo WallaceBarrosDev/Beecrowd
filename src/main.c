@@ -1,24 +1,44 @@
-/* 1180 */
+/* 1181*/
 #include <stdio.h>
 
+double soma(int linha, double matriz[12][12]) {
+  double resultado = matriz[linha][0];
+
+  for (int i = 1; i < 12; i++) {
+    resultado += matriz[linha][i];
+  }
+
+  return resultado;
+}
+
+double media(int linha, double matriz[12][12]) {
+  return soma(linha, matriz)/12;
+}
+
 int main(void) {
-  int tamanho_array, posicao, menor_valor;
-  scanf("%d", &tamanho_array);
-  int array[tamanho_array];
+  char operacao;
+  int linha;
+  double matriz[12][12];
 
-  for(int i = 0; i < tamanho_array; i++) {
-    scanf("%d", &array[i]);
-    if(i == 0) {
-      menor_valor = array[i];
-    } 
+  scanf("%d %c", &linha, &operacao);
 
-    if(array[i] <= menor_valor) {
-      menor_valor = array[i];
-      posicao = i;
+  for(int j = 0; j < 12; j++) {
+    for(int i = 0; i < 12; i++) {
+      scanf("%lf", &matriz[j][i]);
     }
   }
 
-  printf("Menor valor: %d\nPosicao: %d\n", menor_valor, posicao);
+  switch(operacao) {
+    case 'S':
+      printf("%.1f\n", soma(linha, matriz));
+    break;
+    
+    case 'M':
+      printf("%.1f\n", media(linha, matriz)); 
+    break;
+    
+    default: printf("Valor invalido\n");
+  }
 
   return 0;
 }
