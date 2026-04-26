@@ -1,41 +1,45 @@
-/* 1183*/
+// 1183
 #include <stdio.h>
 
-double soma(double matriz[12][12]) {
-  /*for() {
-
-  }*/
-
-  return 0.0;
-}
-
-double media(double matriz[12][12]) {
-  return soma(matriz)/12;
-}
+void preencher(double matriz[12][12]);
+double somar_elementos(double matriz[12][12]);
+double media_elementos(double matriz[12][12]);
 
 int main(void) {
-  char operacao;
+  char option;
   double matriz[12][12];
 
-  scanf("%c", &operacao);
+  scanf("%c", &option);
+  preencher(matriz);
+  if(option == 'S') {
+    printf("%.1f\n", somar_elementos(matriz));
+  }
 
+  if (option == 'M') {
+    printf("%.1f\n", media_elementos(matriz));
+  }
+
+  return 0;
+}
+
+double media_elementos(double matriz[12][12]) {
+  return somar_elementos(matriz)/66;
+}
+
+double somar_elementos(double matriz[12][12]) {
+  double soma_elements = 0.0;
+  for (int j = 0; j < 11; j++) {
+    for (int i = j+1; i < 12; i++) {
+      soma_elements += matriz[j][i];
+    }
+  }
+  return soma_elements;
+}
+
+void preencher(double matriz[12][12]) {
   for(int j = 0; j < 12; j++) {
     for(int i = 0; i < 12; i++) {
       scanf("%lf", &matriz[j][i]);
     }
   }
-
-  switch(operacao) {
-    case 'S':
-      printf("%.1f\n", soma(matriz));
-    break;
-    
-    case 'M':
-      printf("%.1f\n", media(matriz)); 
-    break;
-    
-    default: printf("Valor invalido\n");
-  }
-
-  return 0;
 }
