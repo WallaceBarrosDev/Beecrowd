@@ -1,4 +1,4 @@
-// 1183
+// 1184
 #include <stdio.h>
 
 void preencher(double matriz[12][12]);
@@ -28,8 +28,8 @@ double media_elementos(double matriz[12][12]) {
 
 double somar_elementos(double matriz[12][12]) {
   double soma_elements = 0.0;
-  for (int j = 0; j < 11; j++) {
-    for (int i = j+1; i < 12; i++) {
+  for (int j = 0; j < 12; j++) {
+    for (int i = 0; i < j; i++) {
       soma_elements += matriz[j][i];
     }
   }
