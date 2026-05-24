@@ -1,45 +1,101 @@
-// 1185
+/* 1548
+
+--------- Fila do Recreio -------------
+
+Na escola onde você estuda, a hora do recreio é a mais aguardada pela grande maioria dos alunos. Não só porque as vezes as aulas são cansativas, mas sim porque a merenda servida é muito boa, preparada por um chefe italiano muito caprichoso.
+
+Quando bate o sinal para a hora do recreio, todos os alunos saem correndo da sua sala para chegar o mais cedo possível na cantina, tanta é a vontade de comer. Um de seus professores notou, porém, que havia ali uma oportunidade.
+
+Utilizando um sistema de recompensa, seu professor de matemática disse que a ordem da fila para se servir será dada não pela ordem de chegada, mas sim pela soma das notas obtidas em sala de aula. Assim, aqueles com maior nota poderão se servir antes daqueles que tem menor nota.
+
+Sua tarefa é simples: dada a ordem de chegada dos alunos na cantina, e as suas respectivas notas na matéria de matemática, reordene a fila de acordo com as notas de matemática, e diga quantos alunos não precisaram trocar de lugar nessa reordenação.
+
+- Entrada
+
+A primeira linha contém um inteiro N, indicando o número de casos de teste a seguir.
+
+Cada caso de teste inicia com um inteiro M (1 ≤ M ≤ 1000), indicando o número de alunos. Em seguida haverá M inteiros distintos Pi (1 ≤ Pi ≤ 1000), onde o i-ésimo inteiro indica a nota do i-ésimo aluno.
+
+Os inteiros acima são dados em ordem de chegada, ou seja, o primeiro inteiro diz respeito ao primeiro aluno a chegar na fila, o segundo inteiro diz respeito ao segundo aluno, e assim sucessivamente.
+
+- Saída
+
+Para cada caso de teste imprima uma linha, contendo um inteiro, indicando o número de alunos que não precisaram trocar de lugar mesmo após a fila ser reordenada.
+
+- Exemplo
+
+Entrada:
+3
+3
+100 80 90
+4
+100 120 30 50
+4
+100 90 30 25
+
+Saida:
+1
+0
+4
+
+*/
+
 #include <stdio.h>
 
-void preencher(double matriz[12][12]);
-double somar_elementos(double matriz[12][12]);
-double media_elementos(double matriz[12][12]);
-
-int main(void) {
-  char option;
-  double matriz[12][12];
-
-  scanf("%c", &option);
-  preencher(matriz);
-  if(option == 'S') {
-    printf("%.1f\n", somar_elementos(matriz));
+void mostrar(int *notas, int size) {
+  for(int i = 0; i < size; i++) {
+    printf("\n[%d] - %d\n", i, notas[i]);
   }
-
-  if (option == 'M') {
-    printf("%.1f\n", media_elementos(matriz));
-  }
-
-  return 0;
 }
 
-double media_elementos(double matriz[12][12]) {
-  return somar_elementos(matriz)/66;
+void get(int *notas, int size) {
+  for(int i = 0; i < size; i++) {
+    scanf("%d", &notas[i]);
+  }
 }
 
-double somar_elementos(double matriz[12][12]) {
-  double soma_elements = 0.0;
-  for (int j = 0; j < 11; j++) {
-    for (int i = 0; i < 11-j; i++) {
-      soma_elements += matriz[j][i];
+int ordenar(int *notas, int size) {
+  int nao_trocas = 0;
+  
+  for(int j = 0; j < size; j++) { 
+    int posicao = j, temp = 0;
+    
+    for(int i = (j+1); i < size; i++) {
+      if(notas[posicao] < notas[i]) {
+        posicao = i;
+      }
     }
+
+    if(notas[posicao] == notas[j] && posicao == j) {
+      nao_trocas++;
+      continue;
+    }
+
+    temp = notas[j];
+    notas[j] = notas[posicao];
+    notas[posicao] = temp;
   }
-  return soma_elements;
+
+  return nao_trocas;
 }
 
-void preencher(double matriz[12][12]) {
-  for(int j = 0; j < 12; j++) {
-    for(int i = 0; i < 12; i++) {
-      scanf("%lf", &matriz[j][i]);
-    }
-  }
+void testeCase() {
+  int alunos;
+  scanf("%d", &alunos);
+  int notas[alunos];
+  get(notas, alunos);
+
+  printf("Desordenado\n");
+  mostrar(notas, alunos);
+  printf("\nvalores não trocados: %d\n", ordenar(notas, alunos));
+  printf("Ordenado\n");
+  mostrar(notas, alunos);
+}
+
+int main() {
+  int cases;
+  scanf("%d", &cases);
+  
+  for(int i = 0; i < cases; i++)
+    testeCase();
 }
